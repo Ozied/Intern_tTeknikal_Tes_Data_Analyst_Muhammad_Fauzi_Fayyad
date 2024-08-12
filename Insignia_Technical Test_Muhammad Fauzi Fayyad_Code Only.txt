@@ -1,0 +1,36 @@
+WITH monthly_sales AS (
+    SELECT
+        EXTRACT(YEAR FROM orders.created_at) AS year,
+        EXTRACT(MONTH FROM orders.created_at) AS month,
+        products.id AS product_id,
+        products.name AS product_name,
+        products.category AS product_category,
+        products.brand AS product_brand,
+        COUNT(order_items.id) AS total_quantity_sold,
+        SUM(order_items.sale_price) AS total_sales_amount
+    FROM
+        `bigquery-public-data.thelook_ecommerce.orders` AS orders
+    JOIN
+        `bigquery-public-data.thelook_ecommerce.order_items` AS order_items
+        ON orders.order_id = order_items.order_id
+    JOIN
+        `bigquery-public-data.thelook_ecommerce.products` AS products
+        ON order_items.product_id = products.id
+    WHERE
+        orders.status = 'Complete'
+    GROUP BY
+        year, month, product_id, product_name, product_category, product_brand
+)
+SELECT
+    year,
+    month,
+    product_id,
+    product_name,
+    product_category,
+    product_brand,
+    total_quantity_sold,
+    total_sales_amount
+FROM
+    monthly_sales
+ORDER BY
+    year, month, total_sales_amount DESC;
