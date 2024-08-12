@@ -39,7 +39,7 @@ FROM
     monthly_sales
 ORDER BY
     year, month, total_sales_amount DESC;
-
+```
 
 ## Penjelasan
 
