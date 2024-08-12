@@ -1,3 +1,8 @@
+## SQL Code for Monthly Sales Report
+
+This SQL script is used to generate a monthly sales report, aggregating sales data by product. The report identifies the top-selling products each month.
+
+```sql
 WITH monthly_sales AS (
     SELECT
         EXTRACT(YEAR FROM orders.created_at) AS year,
