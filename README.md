@@ -1,6 +1,6 @@
-## SQL Code for Monthly Sales Report
+## Script SQL untuk Laporan Penjualan Bulanan
 
-This SQL script is used to generate a monthly sales report, aggregating sales data by product. The report identifies the top-selling products each month.
+Kode SQL ini digunakan untuk membuat laporan penjualan bulanan, yang menggabungkan data penjualan berdasarkan produk. Laporan ini mengidentifikasi produk terlaris setiap bulannya.
 
 ```sql
 WITH monthly_sales AS (
